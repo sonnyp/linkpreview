@@ -8,9 +8,6 @@ var http = require('http');
 var childProcess = require('child_process');
 var path = require('path');
 var gm = require('gm');
-var phantom = require('node-phantom');
-
-var ph;
 
 var server = http.createServer();
 server.on('request', function(req, res) {
@@ -51,14 +48,7 @@ server.on('request', function(req, res) {
     })
   }
 });
-
-phantom.create(function(err, proxy) {
-  if (err)
-    return ERROR(err);
-
-  ph = proxy;
-  server.listen(config.listen.port, config.listen.hostname);
-});
+server.listen(config.listen.port, config.hostname);
 
 var getPreview = function(url, callback) {
   var options = {
@@ -103,56 +93,6 @@ var getPreview = function(url, callback) {
   // write data to request body
   // req.write();
   req.end();
-
-
-
-  // return;
-  // ph.createPage(function(err,page) {
-  //   if (err)
-  //     return ERROR(err);
-
-  //   var preview = {};
-  //   page.viewportSize = { width: 1024, height: 1024};
-  //   page.open(url, function(err, status) {
-  //     if (err)
-  //       return ERROR(err);
-
-  //     page.evaluate(
-  //       function() {
-  //         return document.title;
-  //       },
-  //       function(err, result) {
-  //         if (err)
-  //           return ERROR(err);
-
-  //         preview['title'] = result;
-        
-  //         var id = Math.random();
-  //         var name = id + '.png';
-  //         var pathname = path.join(config.tmp, name);
-  //         page.render(pathname, function(err) {
-  //           if (err)
-  //             return ERROR(err);
-
-  //           page.close();
-  //           gm(pathname)
-  //             // .resize(200, 200)
-  //             .write(path.join(config.miniatures, name), function(err) {
-  //               fs.unlink(path.join(config.tmp, name), function (err) {
-  //                 if (err)
-  //                   return ERROR(err);
-  //               });
-  //               if (err)
-  //                 return ERROR(err);
-
-  //               preview.url = 'http://linkpreview/miniatures/' + name;
-  //               callback(null, preview)
-  //             });
-  //         });
-  //       }
-  //     );
-  //   });
-  // });
 };
 
 global.ERROR = function(err) {
