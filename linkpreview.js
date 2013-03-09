@@ -75,7 +75,7 @@ var getPreview = function(url, callback) {
             return ERROR(err);
 
           var preview = {
-            thumbnail: path.join(config.urlPrefix, 'miniatures', result.miniature),
+            thumbnail: config.urlPrefix + path.join('miniatures', result.miniature),
             title: result.title
           }
           callback(null, preview)

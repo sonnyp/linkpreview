@@ -3,7 +3,7 @@
     "port": 8383,
     "hostname": "localhost" 
   },
-  "urlPrefix": "http://localhost",
+  "urlPrefix": "http://localhost/",
   "tmp": "./tmp/",
   "miniatures": "./public/miniatures/"
 }
