@@ -1,0 +1,22 @@
+input[type="submit"] {
+  -webkit-appearance: none;
+  border: none;
+  color: inherit;
+  /*padding: inherit;*/
+  background-color: inherit;
+  cursor: pointer;
+}
+
+input[type="url"] {
+  width: 50%;
+}
+
+input {
+  display: inline-block;
+  height: 100%;
+}
+
+form {
+  text-align: center;
+  height: 25px;
+}

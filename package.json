@@ -1,0 +1,13 @@
+{
+  "name": "linkpreview",
+  "description": "A simple service exposing an API that returns link information such as title and screenshot.",
+  "website": "https://github.com/sonnyp/linkpreview",
+  "author": "Sonny Piers <sonny@fastmail.net>",
+  "dependencies": {
+    "gm": "1.8.2"
+  },
+  "devDependencies": {
+    "mocha": "1.8.1"
+  },
+  "engine": "node >= 0.8.0"
+}
