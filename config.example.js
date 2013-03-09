@@ -3,9 +3,7 @@
     "port": 8383,
     "hostname": "localhost" 
   },
-  "port": 8383,
-  "hostname": "127.0.0.1",
-  "phantomjs": "phantomjs",
+  "host": "localhost",
   "tmp": "./tmp/",
   "miniatures": "./public/miniatures/"
 }
