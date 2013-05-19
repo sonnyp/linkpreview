@@ -5,5 +5,6 @@
   },
   "urlPrefix": "http://localhost/",
   "tmp": "./tmp/",
-  "miniatures": "./public/miniatures/"
+  "miniatures-folder": "./public/miniatures/",
+  "phantomserver-port": 9999
 }

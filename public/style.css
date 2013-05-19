@@ -20,3 +20,26 @@ form {
   text-align: center;
   height: 25px;
 }
+
+#title {
+  display: inline;
+}
+
+#miniature {
+  display: block;
+  margin: auto;
+  border: solid black 1px;
+}
+
+#favicon {
+  max-width: 16px;
+  max-height: 16px;
+}
+
+header {
+  text-align: center;
+}
+
+div {
+  margin-top: 50px;
+}

@@ -5,22 +5,21 @@
 var config = linkpreview.config;
 var titleEl;
 var miniatureEl;
+var faviconEl;
 
 document.addEventListener('DOMContentLoaded', function() {
-  titleEl = document.getElementById('title')
+  titleEl = document.getElementById('title');
   miniatureEl = document.getElementById('miniature');
+  faviconEl = document.getElementById('favicon');
 
   var form = document.querySelector('form');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     var url = this.elements['url'].value;
-    var payload = {
-      url: url
-    };
 
     var req = new XMLHttpRequest();
-    req.open('POST', config.server, true);
+    req.open('GET', config.server + '/' + url, true);
     req.addEventListener('readystatechange', function() {
       if (req.readyState !== 4)
         return;
@@ -30,13 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
       else
         console.log(req.status)
     });
-    req.send(JSON.stringify(payload));
+    req.send(null);
   });
 });
 
 var handleResponse = function(response) {
   miniatureEl.src = response.thumbnail;
   titleEl.textContent = response.title;
-}
+  faviconEl.src = response.favicon;
+};
 
 })();
