@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var url = this.elements['url'].value;
 
     var req = new XMLHttpRequest();
-    req.open('GET', config.server + '/' + url, true);
+    req.open('GET', config.server + '/?URL=' + encodeURIComponent(url), true);
     req.addEventListener('readystatechange', function() {
       if (req.readyState !== 4)
         return;

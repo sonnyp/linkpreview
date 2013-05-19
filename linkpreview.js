@@ -7,6 +7,8 @@ var fs = require('fs');
 var http = require('http');
 var childProcess = require('child_process');
 var path = require('path');
+var url = require('url');
+var querystring = require('querystring');
 var gm = require('gm');
 
 
@@ -35,8 +37,12 @@ server.on('request', function(req, res) {
     res.end();
   }
   else if (req.method === 'GET') {
-    var url = req.url.substr(1)
-    getPreview(url, function(err, result) {
+    var parsedURL = url.parse(req.url);
+    var query = parsedURL.query;
+    var parsedQuery = querystring.parse(query);
+    var encodedURL = parsedQuery.URL;
+    // var URL = decodeURIComponent(encodedURL);
+    getPreview(encodedURL, function(err, result) {
       if (err)
         return ERROR(err);
 
@@ -47,12 +53,12 @@ server.on('request', function(req, res) {
 });
 server.listen(config.listen.port, config.hostname);
 
-var getPreview = function(url, callback) {
+var getPreview = function(URL, callback) {
   var options = {
     hostname: 'localhost',
     port: config['phantomserver-port'],
     method: 'GET',
-    path: '/' + url,
+    path: '/' + URL,
   };
 
   var req = http.request(options, function(res) {
@@ -74,7 +80,7 @@ var getPreview = function(url, callback) {
           var preview = {
             thumbnail: config.urlPrefix + path.join('miniatures', miniatureName),
             title: result.title,
-            favicon: 'http://g.etfv.co/' + encodeURIComponent(url)
+            favicon: 'http://g.etfv.co/' + URL
           };
           callback(null, preview);
         });
