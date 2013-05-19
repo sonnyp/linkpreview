@@ -10,7 +10,7 @@ var path = require('path');
 var gm = require('gm');
 
 
-var phantomserver = childProcess.spawn('phantomjs', ['--ignore-ssl-errors=true', './phantomserver.js'], {cwd: '.'});
+var phantomserver = childProcess.spawn(config.phantomjs, ['--ignore-ssl-errors=true', './phantomserver.js'], {cwd: '.'});
 phantomserver.stdout.on('data', function (data) {
   console.log('phantomserver stdout: ' + data);
 });
